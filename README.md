@@ -13,30 +13,57 @@ A clean, simple one-page site for the BETA launch of "The Art of Conversation" b
 
 Before going live, replace these placeholders in `index.html`:
 
+### IMPORTANT: Signup Form URL
+- `YOUR_FORM_URL_HERE` - Replace with your Google Form, Typeform, or Tally form URL (appears twice - in hero section and "How to Join" section)
+- Search for `YOUR_FORM_URL_HERE` and replace both instances
+
 ### Contact Information
-- `[your email]` - Your email address (appears in multiple places)
-- `[your LinkedIn URL]` - Your LinkedIn profile URL
-- `[Your Name]` - Your name as the instructor
+- ✅ Already updated: Lara McKinney Mossler
+- ✅ Already updated: laramckinneymossler@gmail.com
+- ✅ Already updated: LinkedIn profile
 
 ### Beta Cohort Details
-- `[Month/Year]` - When the beta cohort starts (e.g., "February 2026")
-- `[Start Date]` - First day of the course (e.g., "February 3, 2026")
-- `[End Date]` - Last day of the course (e.g., "March 3, 2026")
-- `[Day of week]` - Day of live sessions (e.g., "Wednesdays")
-- `[Time]` - Time of live sessions (e.g., "7:00 PM")
-- `[Timezone]` - Timezone (e.g., "EST")
+- ✅ Already updated: January 29, 2026 - February 26, 2026
+- ✅ Already updated: Schedule TBD (poll will be sent to enrolled students)
 
 ### Pricing
-- `$[X]` or `$[Beta Price]` - Your beta course price (e.g., "$297")
-- `$[Y]` or `$[Regular Price]` - Your planned regular price (e.g., "$597")
+- ✅ Already updated: FREE for beta (regular price $499)
+
+## Creating Your Signup Form
+
+The landing page includes prominent "Apply for Beta Cohort" buttons. You'll need to create a signup form and replace `YOUR_FORM_URL_HERE` with your form URL.
+
+### Recommended Form Fields:
+
+**Essential:**
+1. Name (First and Last)
+2. Email
+3. Why are you interested in this course? (text area)
+4. What's your biggest challenge in conversations? (optional text area)
+5. Timezone (dropdown: EST, CST, MST, PST, Other)
+6. Which time slots generally work for you? (checkboxes)
+   - Weekday mornings (9am-12pm)
+   - Weekday afternoons (12pm-5pm)
+   - Weekday evenings (5pm-9pm)
+   - Weekend mornings
+   - Weekend afternoons
+   - I'm flexible
+7. LinkedIn Profile URL (optional)
+
+### Form Platform Options:
+- **Google Forms** (Free, easy) - Responses go to a spreadsheet
+- **Typeform** (Beautiful UI, free tier available)
+- **Tally** (Free, clean design)
+
+Once you create your form, search for `YOUR_FORM_URL_HERE` in `index.html` and replace both instances with your form URL.
 
 ## Adding Your Photo
 
 1. Add your professional photo to this folder (e.g., `instructor-photo.jpg`)
-2. In `index.html`, find the About Section (line ~147)
+2. In `index.html`, find the About Section (line ~134)
 3. Uncomment and update the image tag:
    ```html
-   <img src="instructor-photo.jpg" alt="[Your Name]" class="instructor-photo">
+   <img src="instructor-photo.jpg" alt="Lara McKinney Mossler" class="instructor-photo">
    ```
 
 ## Design Features
@@ -95,10 +122,11 @@ To remove a section you don't need:
 ## Testing Checklist
 
 Before launching:
-- [ ] All placeholders replaced with real information
+- [ ] **Signup form created and `YOUR_FORM_URL_HERE` replaced (2 places)**
+- [ ] Signup form link works and opens correctly
 - [ ] Email links work (`mailto:` links open email client)
 - [ ] LinkedIn link opens in new tab
-- [ ] Test on mobile phone
+- [ ] Test signup button on mobile phone
 - [ ] Test on tablet
 - [ ] Test on desktop
 - [ ] Check spelling and grammar

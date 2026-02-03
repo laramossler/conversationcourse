@@ -1,478 +1,805 @@
-/* Reset and Base Styles */
-* {
+/* ================================================
+   The Art of Conversation - Landing Page Styles
+   Sophisticated, minimal, European-influenced aesthetic
+   ================================================ */
+
+/* CSS Custom Properties */
+:root {
+    /* Colors - Muted, warm palette */
+    --color-cream: #FAF8F5;
+    --color-cream-dark: #F5F2ED;
+    --color-gold: #C9A96E;
+    --color-gold-light: #D4B87A;
+    --color-gold-dark: #B8935A;
+    --color-green-deep: #2C4A4A;
+    --color-green-darker: #1E3535;
+    --color-text-primary: #1A1A1A;
+    --color-text-secondary: #4A4A4A;
+    --color-text-muted: #6B6B6B;
+    --color-border: #E5E0D8;
+    --color-white: #FFFFFF;
+
+    /* Typography */
+    --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+    --space-xl: 4rem;
+    --space-xxl: 6rem;
+
+    /* Container */
+    --container-max: 900px;
+    --container-narrow: 700px;
+}
+
+/* Reset and Base */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #fff;
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
 }
 
-/* Container */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
+body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--color-text-primary);
+    background-color: var(--color-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Typography */
-h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #1a1a1a;
+h1, h2, h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
     line-height: 1.2;
+    color: var(--color-text-primary);
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
 }
 
 h2 {
-    font-size: 2.2rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    color: #1a1a1a;
-    line-height: 1.3;
+    font-size: 2.25rem;
+    margin-bottom: var(--space-lg);
+    letter-spacing: -0.01em;
 }
 
 h3 {
     font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 0.75rem;
-    color: #2c5f5f;
-}
-
-h4 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #1a1a1a;
+    margin-bottom: var(--space-sm);
+    color: var(--color-green-deep);
 }
 
 p {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
+    font-size: 1.125rem;
+    margin-bottom: var(--space-md);
+    color: var(--color-text-secondary);
 }
 
 a {
-    color: #2c5f5f;
+    color: var(--color-green-deep);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
 a:hover {
-    color: #1a4040;
-    text-decoration: underline;
+    color: var(--color-gold-dark);
 }
 
 ul {
-    list-style-position: inside;
-    margin-bottom: 1rem;
+    list-style: none;
 }
 
-li {
-    margin-bottom: 0.5rem;
-    font-size: 1.05rem;
+/* Container */
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
 }
 
 /* Sections */
 section {
-    padding: 4rem 0;
-    border-bottom: 1px solid #e5e5e5;
+    padding: var(--space-xxl) 0;
 }
 
-section:last-of-type {
-    border-bottom: none;
-}
-
-/* Hero Section */
+/* ================================================
+   Hero Section
+   ================================================ */
 .hero {
-    padding: 5rem 0 4rem;
-    background: linear-gradient(135deg, #f8fafa 0%, #ffffff 100%);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-xxl) 0;
+    background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-white) 100%);
 }
 
-.subheadline {
-    font-size: 1.4rem;
-    color: #555;
-    margin-bottom: 2rem;
+.hero h1 {
+    margin-bottom: var(--space-xs);
+}
+
+.hero .tagline {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-style: italic;
     font-weight: 400;
+    color: var(--color-gold-dark);
+    margin-bottom: var(--space-lg);
 }
 
-.intro {
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: #444;
+.hero .subheadline {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto var(--space-xl);
+    line-height: 1.6;
 }
 
-.intro-bold {
-    font-size: 1.2rem;
+.hero .social-proof {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin-top: var(--space-md);
+    margin-bottom: 0;
+}
+
+/* CTA Buttons */
+.cta-button {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 1rem;
     font-weight: 500;
-    line-height: 1.7;
-    color: #1a1a1a;
-    margin: 2rem 0;
+    letter-spacing: 0.02em;
+    padding: 1rem 2.5rem;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-/* Beta Box */
-.beta-box {
-    background-color: #f0f7f7;
-    border-left: 4px solid #2c5f5f;
-    padding: 2rem;
-    margin: 2.5rem 0;
+.cta-button.primary {
+    background-color: var(--color-green-deep);
+    color: var(--color-white);
+    border: 2px solid var(--color-green-deep);
+}
+
+.cta-button.primary:hover {
+    background-color: var(--color-green-darker);
+    border-color: var(--color-green-darker);
+    color: var(--color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(44, 74, 74, 0.2);
+}
+
+.cta-button.large {
+    font-size: 1.125rem;
+    padding: 1.25rem 3rem;
+}
+
+/* ================================================
+   Problem Section
+   ================================================ */
+.problem {
+    background-color: var(--color-white);
+}
+
+.problem h2 {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.problem-grid {
+    max-width: var(--container-narrow);
+    margin: 0 auto;
+}
+
+.problem-item {
+    margin-bottom: var(--space-lg);
+}
+
+.problem-item:last-child {
+    margin-bottom: 0;
+}
+
+.problem-item p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+}
+
+/* ================================================
+   Solution Section
+   ================================================ */
+.solution {
+    background-color: var(--color-cream);
+}
+
+.solution h2 {
+    text-align: center;
+}
+
+.solution .section-intro {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto var(--space-xl);
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+}
+
+.curriculum-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl) var(--space-lg);
+}
+
+.curriculum-item {
+    padding: var(--space-lg);
+    background-color: var(--color-white);
     border-radius: 4px;
+    border: 1px solid var(--color-border);
 }
 
-.beta-box h3 {
-    color: #1a1a1a;
-    margin-bottom: 1rem;
+.curriculum-item h3 {
+    font-size: 1.375rem;
+    margin-bottom: var(--space-md);
+    color: var(--color-green-deep);
 }
 
-.beta-box ul {
-    list-style: none;
+.curriculum-item ul {
+    margin: 0;
 }
 
-.beta-box li {
+.curriculum-item li {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-sm);
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.6;
+}
+
+.curriculum-item li:last-child {
+    margin-bottom: 0;
+}
+
+.curriculum-item li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-gold);
+    border-radius: 50%;
+}
+
+/* ================================================
+   Authority Section
+   ================================================ */
+.authority {
+    background-color: var(--color-white);
+}
+
+.authority h2 {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.authority-content {
+    max-width: var(--container-narrow);
+    margin: 0 auto;
+}
+
+.authority-text p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-lg);
+}
+
+.authority-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* ================================================
+   How It Works Section
+   ================================================ */
+.how-it-works {
+    background-color: var(--color-cream);
+}
+
+.how-it-works h2 {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.format-overview {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.format-item {
+    padding: var(--space-md) var(--space-lg);
+    background-color: var(--color-white);
+    border-left: 3px solid var(--color-gold);
+}
+
+.format-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xs);
+}
+
+.format-value {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--color-text-primary);
+}
+
+.between-sessions,
+.whats-included {
+    max-width: var(--container-narrow);
+    margin: 0 auto var(--space-xl);
+}
+
+.between-sessions:last-child,
+.whats-included:last-child {
+    margin-bottom: 0;
+}
+
+.between-sessions h3,
+.whats-included h3 {
+    font-size: 1.375rem;
+    margin-bottom: var(--space-md);
+    text-align: center;
+}
+
+.between-sessions p {
+    text-align: center;
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+}
+
+.included-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.included-list li {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
     padding-left: 1.5rem;
     position: relative;
 }
 
-.beta-box li:before {
-    content: "✓";
+.included-list li::before {
+    content: "";
     position: absolute;
     left: 0;
-    color: #2c5f5f;
-    font-weight: bold;
-}
-
-/* CTA */
-.cta {
-    margin-top: 2.5rem;
-    padding: 2rem;
-    background-color: #fff;
-    border: 2px solid #2c5f5f;
-    border-radius: 4px;
-    text-align: center;
-}
-
-.cta p {
-    margin-bottom: 0.5rem;
-    font-size: 1.15rem;
-}
-
-.cta a {
-    font-weight: 600;
-    font-size: 1.15rem;
-}
-
-/* Signup Button */
-.signup-button {
-    display: inline-block;
-    background-color: #2c5f5f;
-    color: #fff !important;
-    padding: 1rem 2.5rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-    border-radius: 4px;
-    text-decoration: none !important;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 1.5rem 0;
-    box-shadow: 0 2px 8px rgba(44, 95, 95, 0.2);
-}
-
-.signup-button:hover {
-    background-color: #1a4040;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(44, 95, 95, 0.3);
-}
-
-.or-divider {
-    margin: 1.5rem 0 1rem 0;
-    color: #666;
-    font-style: italic;
-    font-size: 1rem;
-}
-
-/* Curriculum Section */
-.curriculum {
-    background-color: #fff;
-}
-
-.week {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.week:last-child {
-    border-bottom: none;
-}
-
-.week-tagline {
-    font-style: italic;
-    color: #555;
-    margin-bottom: 1rem;
-}
-
-.format-box {
-    background-color: #f9f9f9;
-    padding: 1.5rem;
-    border-radius: 4px;
-    margin-top: 2rem;
-}
-
-.format-box h4 {
-    margin-bottom: 1rem;
-}
-
-/* Why This Works Section */
-.why-works {
-    background-color: #f8fafa;
-}
-
-.reason {
-    margin-bottom: 2.5rem;
-}
-
-.reason:last-child {
-    margin-bottom: 0;
-}
-
-.reason h3 {
-    margin-bottom: 0.75rem;
-}
-
-.reason p {
-    font-size: 1.1rem;
-    color: #444;
-}
-
-/* About Section */
-.about {
-    background-color: #fff;
-}
-
-.about-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.instructor-photo {
-    max-width: 250px;
+    top: 0.45rem;
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--color-gold);
     border-radius: 50%;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.about p {
-    font-size: 1.15rem;
+/* ================================================
+   Who This Is For Section
+   ================================================ */
+.who-for {
+    background-color: var(--color-white);
+}
+
+.who-for h2 {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.persona-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.persona {
+    padding: var(--space-lg);
+    background-color: var(--color-cream);
+    border-radius: 4px;
+}
+
+.persona h3 {
+    font-size: 1.25rem;
+    color: var(--color-gold-dark);
+    margin-bottom: var(--space-sm);
+}
+
+.persona p {
+    font-size: 1rem;
     line-height: 1.7;
-    max-width: 700px;
-}
-
-/* Beta Details Section */
-.beta-details {
-    background-color: #f8fafa;
-}
-
-.detail-group {
-    margin-bottom: 2.5rem;
-}
-
-.detail-group:last-child {
+    color: var(--color-text-secondary);
     margin-bottom: 0;
 }
 
-.detail-group h3 {
-    margin-bottom: 1rem;
-}
-
-.pricing {
-    font-size: 1.8rem;
-    color: #2c5f5f;
-    margin-bottom: 0.5rem;
-}
-
-.regular-price {
-    color: #666;
-    font-size: 1rem;
-}
-
-/* How to Join Section */
-.how-to-join {
-    background-color: #fff;
+.not-for {
+    max-width: var(--container-narrow);
+    margin: 0 auto;
+    padding: var(--space-lg);
+    background-color: var(--color-cream-dark);
+    border-radius: 4px;
     text-align: center;
 }
 
-.how-to-join .signup-button {
-    display: inline-block;
+.not-for h3 {
+    font-size: 1.125rem;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
 }
 
-.join-intro {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
-
-.contact-options {
-    background-color: #f0f7f7;
-    padding: 2rem;
-    border-radius: 4px;
-    margin: 2rem 0;
-}
-
-.contact-options p {
-    margin-bottom: 1rem;
-    font-size: 1.15rem;
-}
-
-.contact-options p:last-child {
+.not-for p {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
     margin-bottom: 0;
 }
 
-.next-steps {
-    margin: 2.5rem 0;
-    text-align: left;
+/* ================================================
+   Pricing Section
+   ================================================ */
+.pricing {
+    background-color: var(--color-green-deep);
+    color: var(--color-white);
 }
 
-.next-steps h3 {
-    margin-bottom: 1rem;
+.pricing h2 {
+    text-align: center;
+    color: var(--color-white);
+    margin-bottom: var(--space-xl);
 }
 
-.limited-spots {
-    margin-top: 2rem;
-    color: #666;
-    font-style: italic;
+.pricing-card {
+    max-width: 550px;
+    margin: 0 auto;
+    text-align: center;
+    padding: var(--space-xl);
+    background-color: var(--color-white);
+    border-radius: 4px;
 }
 
-/* FAQ Section */
+.price {
+    margin-bottom: var(--space-lg);
+}
+
+.price-amount {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--color-green-deep);
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+}
+
+.price-label {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+}
+
+.logistics {
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md) 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.logistics-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: var(--space-sm) 0;
+}
+
+.logistics-item:first-child {
+    padding-top: 0;
+}
+
+.logistics-item:last-child {
+    padding-bottom: 0;
+}
+
+.logistics-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+}
+
+.logistics-value {
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    text-align: right;
+}
+
+.pricing-card .cta-button {
+    margin-top: var(--space-sm);
+}
+
+/* ================================================
+   FAQ Section
+   ================================================ */
 .faq {
-    background-color: #f9f9f9;
+    background-color: var(--color-cream);
+}
+
+.faq h2 {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
 }
 
 .faq-item {
-    margin-bottom: 2rem;
-}
-
-.faq-item:last-child {
-    margin-bottom: 0;
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .faq-item h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
 }
 
 .faq-item p {
-    color: #444;
-    font-size: 1.05rem;
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+    line-height: 1.7;
 }
 
-/* Footer */
+/* ================================================
+   Final CTA Section
+   ================================================ */
+.final-cta {
+    background-color: var(--color-white);
+    text-align: center;
+    padding: var(--space-xxl) 0;
+}
+
+.final-cta h2 {
+    margin-bottom: var(--space-md);
+}
+
+.final-cta .cta-text {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-lg);
+}
+
+.final-cta .questions {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-top: var(--space-lg);
+    margin-bottom: 0;
+}
+
+.final-cta .questions a {
+    color: var(--color-green-deep);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* ================================================
+   Footer
+   ================================================ */
 footer {
-    background-color: #1a1a1a;
-    color: #fff;
-    padding: 2rem 0;
+    background-color: var(--color-text-primary);
+    color: var(--color-white);
+    padding: var(--space-xl) 0;
     text-align: center;
 }
 
-footer p {
-    margin-bottom: 0.5rem;
+.footer-title {
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    font-weight: 500;
+    color: var(--color-white);
+    margin-bottom: var(--space-sm);
+}
+
+.footer-contact {
     font-size: 0.95rem;
+    margin-bottom: var(--space-md);
 }
 
-footer a {
-    color: #8ecaca;
+.footer-contact a {
+    color: var(--color-gold-light);
 }
 
-footer a:hover {
-    color: #b8e0e0;
+.footer-contact a:hover {
+    color: var(--color-gold);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+.footer-contact .separator {
+    margin: 0 var(--space-sm);
+    color: var(--color-text-muted);
+}
+
+.footer-tagline {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+}
+
+/* ================================================
+   Responsive Design
+   ================================================ */
+@media (max-width: 900px) {
+    :root {
+        --space-xxl: 4rem;
+    }
+
     h1 {
-        font-size: 2.2rem;
+        font-size: 2.75rem;
     }
 
     h2 {
-        font-size: 1.8rem;
+        font-size: 2rem;
+    }
+
+    .curriculum-grid,
+    .persona-grid,
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+    .format-overview {
+        grid-template-columns: 1fr;
+    }
+
+    .included-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --space-xl: 2.5rem;
+        --space-xxl: 3rem;
+    }
+
+    html {
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 2.25rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
     }
 
     h3 {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
     }
 
     .hero {
-        padding: 3rem 0 2rem;
+        min-height: auto;
+        padding: var(--space-xl) 0;
     }
 
-    section {
-        padding: 3rem 0;
+    .hero .tagline {
+        font-size: 1.375rem;
     }
 
-    .beta-box {
-        padding: 1.5rem;
+    .hero .subheadline {
+        font-size: 1.125rem;
     }
 
-    .cta {
-        padding: 1.5rem;
+    .cta-button {
+        padding: 0.875rem 2rem;
+        width: 100%;
+        text-align: center;
     }
 
-    .contact-options {
-        padding: 1.5rem;
+    .cta-button.large {
+        padding: 1rem 2rem;
     }
 
-    p, li {
-        font-size: 1rem;
+    .curriculum-item,
+    .persona {
+        padding: var(--space-md);
     }
 
-    .intro-bold {
-        font-size: 1.1rem;
+    .pricing-card {
+        padding: var(--space-lg);
     }
 
-    .pricing {
-        font-size: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.8rem;
+    .price-amount {
+        font-size: 2.75rem;
     }
 
-    h2 {
-        font-size: 1.5rem;
+    .logistics-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-xs);
     }
 
-    .container {
-        padding: 0 15px;
+    .logistics-value {
+        text-align: left;
     }
 
-    .beta-box {
-        padding: 1.25rem;
-    }
-
-    .cta {
-        padding: 1.25rem;
+    .format-item {
+        padding: var(--space-md);
     }
 }
 
-/* Print Styles */
+/* ================================================
+   Print Styles
+   ================================================ */
 @media print {
     body {
         font-size: 12pt;
+        color: #000;
+        background: #fff;
     }
 
     section {
         page-break-inside: avoid;
+        padding: 2rem 0;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+
+    .cta-button {
+        border: 1px solid #000;
+        background: none;
+        color: #000;
     }
 
     a {
         text-decoration: underline;
     }
 
-    a[href]:after {
+    a[href^="http"]:after {
         content: " (" attr(href) ")";
+        font-size: 0.8em;
     }
 }

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Art of Conversation — Cohort Feedback</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f8f5f0;
+    --cream: #efe9e0;
+    --warm-gray: #8a7e74;
+    --accent: #6b4c3b;
+    --accent-light: #9e7e6b;
+    --border: #d4cdc4;
+    --white: #ffffff;
+    --success: #4a6741;
+    --error: #a04040;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* Header */
+  .form-header {
+    text-align: center;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .form-header .overline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-bottom: 16px;
+  }
+
+  .form-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .form-header h1 em {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .form-header .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--warm-gray);
+    margin-top: 12px;
+  }
+
+  .divider {
+    width: 48px;
+    height: 1px;
+    background: var(--accent-light);
+    margin: 24px auto;
+  }
+
+  .intro-text {
+    font-size: 14.5px;
+    color: var(--warm-gray);
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  /* Form Sections */
+  .form-section {
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .form-section:nth-child(2) { animation-delay: 0.1s; }
+  .form-section:nth-child(3) { animation-delay: 0.2s; }
+  .form-section:nth-child(4) { animation-delay: 0.3s; }
+  .form-section:nth-child(5) { animation-delay: 0.4s; }
+  .form-section:nth-child(6) { animation-delay: 0.5s; }
+  .form-section:nth-child(7) { animation-delay: 0.6s; }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .section-hint {
+    font-size: 13px;
+    color: var(--warm-gray);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  /* Input Styles */
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--accent-light);
+    box-shadow: 0 0 0 3px rgba(107, 76, 59, 0.08);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.7;
+  }
+
+  textarea.tall {
+    min-height: 160px;
+  }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a7e74' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  /* Rating Scale */
+  .rating-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .rating-option {
+    flex: 1;
+    position: relative;
+  }
+
+  .rating-option input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .rating-option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 8px 10px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .rating-option label .number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--warm-gray);
+    transition: color 0.25s ease;
+  }
+
+  .rating-option label .label-text {
+    font-size: 10px;
+    color: var(--warm-gray);
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.25s ease;
+  }
+
+  .rating-option:first-child label .label-text,
+  .rating-option:last-child label .label-text {
+    opacity: 1;
+    height: auto;
+  }
+
+  .rating-option label:hover {
+    border-color: var(--accent-light);
+    background: rgba(107, 76, 59, 0.03);
+  }
+
+  .rating-option input:checked + label {
+    border-color: var(--accent);
+    background: rgba(107, 76, 59, 0.06);
+  }
+
+  .rating-option input:checked + label .number {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* Checkbox / Consent */
+  .consent-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 8px;
+  }
+
+  .consent-group input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    background: var(--white);
+    cursor: pointer;
+    margin-top: 2px;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .consent-group input[type="checkbox"]:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .consent-group input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 6px;
+    width: 5px;
+    height: 9px;
+    border: solid var(--white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .consent-group label {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.6;
+    cursor: pointer;
+  }
+
+  .consent-group label span {
+    color: var(--warm-gray);
+    font-size: 13px;
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* Quote Section Special Styling */
+  .quote-section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px 28px;
+    margin-top: 8px;
+  }
+
+  .quote-section .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .quote-section .section-label::before {
+    content: '\201C';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--accent-light);
+    opacity: 0.5;
+    margin-top: -8px;
+  }
+
+  .quote-section .inner-group {
+    margin-top: 20px;
+  }
+
+  .quote-section .inner-group + .inner-group {
+    margin-top: 16px;
+  }
+
+  .quote-section .inner-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--warm-gray);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Attribution line */
+  .attribution-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) {
+    .attribution-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Submit */
+  .submit-section {
+    text-align: center;
+    margin-top: 56px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: 0.7s;
+  }
+
+  .submit-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--accent);
+    border: none;
+    border-radius: 6px;
+    padding: 16px 48px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .submit-btn:hover {
+    background: var(--ink);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(26, 26, 26, 0.15);
+  }
+
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .submit-note {
+    font-size: 13px;
+    color: var(--warm-gray);
+    margin-top: 16px;
+  }
+
+  /* Error message */
+  .error-message {
+    display: none;
+    color: var(--error);
+    font-size: 14px;
+    margin-top: 12px;
+    text-align: center;
+  }
+
+  /* Thank You State */
+  .thank-you {
+    display: none;
+    text-align: center;
+    padding: 80px 24px;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .thank-you h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .thank-you p {
+    font-size: 15px;
+    color: var(--warm-gray);
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .thank-you .check-mark {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(74, 103, 65, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+  }
+
+  .thank-you .check-mark svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--success);
+  }
+
+  /* Required asterisk */
+  .required::after {
+    content: ' *';
+    color: var(--accent-light);
+    font-size: 14px;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .page-wrapper {
+      padding: 40px 20px 60px;
+    }
+    .form-header h1 {
+      font-size: 32px;
+    }
+    .rating-group {
+      gap: 4px;
+    }
+    .rating-option label {
+      padding: 12px 4px 8px;
+    }
+    .quote-section {
+      padding: 24px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Form -->
+  <form id="feedbackForm">
+
+    <div class="form-header">
+      <p class="overline">Beta Cohort 1</p>
+      <h1>The Art of <em>Conversation</em></h1>
+      <div class="divider"></div>
+      <p class="subtitle">Your reflections shape what comes next</p>
+      <p class="intro-text" style="margin-top: 24px;">
+        Thank you for being part of this first cohort. Your honest feedback — what worked, what didn't, what surprised you — will directly shape the next iteration of this course.
+      </p>
+    </div>
+
+    <!-- Name -->
+    <div class="form-section">
+      <label class="section-label required" for="name">Your Name</label>
+      <p class="section-hint">Or however you'd like to be credited, if you share a quote.</p>
+      <input type="text" id="name" name="name" placeholder="First name or full name" required>
+    </div>
+
+    <!-- Overall Rating -->
+    <div class="form-section">
+      <p class="section-label required">Overall, how would you rate the course?</p>
+      <p class="section-hint">Consider the full arc — sessions, materials, conversations, and community.</p>
+      <div class="rating-group">
+        <div class="rating-option">
+          <input type="radio" name="rating" id="r1" value="1" required>
+          <label for="r1">
+            <span class="number">1</span>
+            <span class="label-text">Low</span>
+          </label>
+        </div>
+        <div class="rating-option">
+          <input type="radio" name="rating" id="r2" value="2">
+          <label for="r2">
+            <span class="number">2</span>
+          </label>
+        </div>
+        <div class="rating-option">
+          <input type="radio" name="rating" id="r3" value="3">
+          <label for="r3">
+            <span class="number">3</span>
+          </label>
+        </div>
+        <div class="rating-option">
+          <input type="radio" name="rating" id="r4" value="4">
+          <label for="r4">
+            <span class="number">4</span>
+          </label>
+        </div>
+        <div class="rating-option">
+          <input type="radio" name="rating" id="r5" value="5">
+          <label for="r5">
+            <span class="number">5</span>
+          </label>
+        </div>
+        <div class="rating-option">
+          <input type="radio" name="rating" id="r6" value="6">
+          <label for="r6">
+            <span class="number">6</span>
+          </label>
+        </div>
+        <div class="rating-option">
+          <input type="radio" name="rating" id="r7" value="7">
+          <label for="r7">
+            <span class="number">7</span>
+            <span class="label-text">High</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- What Resonated -->
+    <div class="form-section">
+      <label class="section-label required" for="resonated">What resonated most?</label>
+      <p class="section-hint">A particular session, exercise, idea, or moment that stayed with you.</p>
+      <textarea id="resonated" name="resonated" placeholder="What will you carry with you from this experience?" required></textarea>
+    </div>
+
+    <!-- What Could Improve -->
+    <div class="form-section">
+      <label class="section-label" for="improve">What would you change?</label>
+      <p class="section-hint">Pacing, depth, structure, format — anything. Candor is a gift here.</p>
+      <textarea id="improve" name="improve" placeholder="Be as specific as you'd like..."></textarea>
+    </div>
+
+    <!-- Would Recommend -->
+    <div class="form-section">
+      <label class="section-label" for="recommend">Who would you recommend this course to?</label>
+      <p class="section-hint">Describe the person — what they're navigating, what they care about.</p>
+      <textarea id="recommend" name="recommend" placeholder="I'd recommend this to someone who..."></textarea>
+    </div>
+
+    <!-- Quotable Moment / Testimonial -->
+    <div class="form-section">
+      <div class="quote-section">
+        <p class="section-label">A quote we can share</p>
+        <p class="section-hint" style="margin-bottom: 0;">If you're willing, a sentence or two about your experience. This might appear on the course page, in the newsletter, or in future materials.</p>
+
+        <div class="inner-group">
+          <p class="inner-label">Your testimonial</p>
+          <textarea name="quote" id="quote" class="tall" placeholder="e.g. &ldquo;This course changed the way I think about what it means to truly listen...&rdquo;"></textarea>
+        </div>
+
+        <div class="inner-group">
+          <p class="inner-label">How to attribute it</p>
+          <div class="attribution-row">
+            <select name="attribution_style" id="attribution_style">
+              <option value="" disabled selected>How should we credit you?</option>
+              <option value="full_name">Full name</option>
+              <option value="first_name">First name only</option>
+              <option value="initials">Initials only</option>
+              <option value="anonymous">Anonymous</option>
+            </select>
+            <input type="text" name="attribution_detail" id="attribution_detail" placeholder="Title, city, or context (optional)">
+          </div>
+        </div>
+
+        <div class="inner-group">
+          <div class="consent-group">
+            <input type="checkbox" id="quote_consent" name="quote_consent">
+            <label for="quote_consent">
+              I give permission to use this quote in course materials, the website, and the <em>Dispatches from White Salmon</em> newsletter.
+              <span>You can withdraw this at any time by reaching out.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Anything Else -->
+    <div class="form-section">
+      <label class="section-label" for="anything_else">Anything else?</label>
+      <p class="section-hint">A thought, a question, a thing unsaid. This is your space.</p>
+      <textarea id="anything_else" name="anything_else" placeholder="..."></textarea>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-section">
+      <button type="submit" class="submit-btn" id="submitBtn">Send Feedback</button>
+      <p class="error-message" id="errorMessage">Something went wrong. Please try again, or email your feedback directly.</p>
+      <p class="submit-note">Your responses are shared only with Lara.</p>
+    </div>
+
+  </form>
+
+  <!-- Thank You -->
+  <div class="thank-you" id="thankYou">
+    <div class="check-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    <h2>Thank you</h2>
+    <p>Your reflections mean more than you know. They'll shape every cohort that follows this one.</p>
+  </div>
+
+</div>
+
+<script>
+  // ============================================================
+  // SETUP: Replace this URL with your deployed Google Apps Script web app URL.
+  // See google-apps-script.gs for setup instructions.
+  // ============================================================
+  var GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+
+  document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var btn = document.getElementById('submitBtn');
+    var errorEl = document.getElementById('errorMessage');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    errorEl.style.display = 'none';
+
+    // Collect form data
+    var formData = new FormData(this);
+    var data = {};
+    formData.forEach(function(value, key) {
+      data[key] = value;
+    });
+    data['quote_consent'] = document.getElementById('quote_consent').checked;
+    data['submitted_at'] = new Date().toISOString();
+
+    // Send to Google Sheets via Apps Script
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(function() {
+      // With no-cors we can't read the response, but if fetch didn't throw, it was sent
+      document.getElementById('feedbackForm').style.display = 'none';
+      document.getElementById('thankYou').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+    .catch(function() {
+      errorEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Send Feedback';
+    });
+  });
+</script>
+
+</body>
+</html>

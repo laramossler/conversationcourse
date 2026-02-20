@@ -653,12 +653,6 @@
 </div>
 
 <script>
-  // ============================================================
-  // SETUP: Replace this URL with your deployed Google Apps Script web app URL.
-  // See google-apps-script.gs for setup instructions.
-  // ============================================================
-  var GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
-
   document.getElementById('feedbackForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -670,25 +664,22 @@
 
     // Collect form data
     var formData = new FormData(this);
-    var data = {};
-    formData.forEach(function(value, key) {
-      data[key] = value;
-    });
-    data['quote_consent'] = document.getElementById('quote_consent').checked;
-    data['submitted_at'] = new Date().toISOString();
+    formData.set('quote_consent', document.getElementById('quote_consent').checked ? 'Yes' : 'No');
+    formData.set('submitted_at', new Date().toISOString());
 
-    // Send to Google Sheets via Apps Script
-    fetch(GOOGLE_SCRIPT_URL, {
+    fetch('https://formspree.io/f/xzdaarwz', {
       method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: formData,
+      headers: { 'Accept': 'application/json' }
     })
-    .then(function() {
-      // With no-cors we can't read the response, but if fetch didn't throw, it was sent
-      document.getElementById('feedbackForm').style.display = 'none';
-      document.getElementById('thankYou').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    .then(function(response) {
+      if (response.ok) {
+        document.getElementById('feedbackForm').style.display = 'none';
+        document.getElementById('thankYou').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        throw new Error('Form submission failed');
+      }
     })
     .catch(function() {
       errorEl.style.display = 'block';
